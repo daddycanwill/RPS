@@ -1,28 +1,27 @@
 const prompt = require("prompt-sync")();
 
-
 function getComputerChoice() {
 	const computerNumber = Math.floor(Math.random() * 3) + 1;
 	if (computerNumber === 1) {
 		return "Rock";
 	}
-	if (computerNumber === 2) {
+	else if (computerNumber === 2) {
 		return "Paper";
 	}
-	if (computerNumber === 3){
+	else {
 		return "Scissors";
 	}
 }
 
 function getHumanChoice() {
 	const humanNumber = prompt("Enter a number between 1 and 3. 1: Rock, 2: Paper and 3: Scissors : ");
-	if (humanNumber === 1) {
+	if (humanNumber == 1) {
 		return "Rock";
 	}
-	if (humanNumber === 2) {
+	else if (humanNumber == 2) {
 		return "Paper";
 	}
-	if (humanNumber === 3){
+	else {
 		return "Scissors";
 	}
 }
@@ -75,4 +74,12 @@ function playRound(humanChoice, computerChoice) {
 const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
 
+let humanScore = 0;
+let computerScore = 0;
+
 playRound(humanSelection, computerSelection);
+
+
+
+
+
