@@ -14,60 +14,37 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-	const humanNumber = prompt("Enter a number between 1 and 3. 1: Rock, 2: Paper and 3: Scissors : ");
-	if (humanNumber == 1) {
+	const humanNumber = Number(prompt("Enter a number between 1 and 3. 1: Rock, 2: Paper and 3: Scissors : "));
+	if (humanNumber === 1) {
 		return "Rock";
 	}
-	else if (humanNumber == 2) {
+	else if (humanNumber === 2) {
 		return "Paper";
 	}
-	else {
+	else if (humanNumber === 3) {
 		return "Scissors";
+	}
+	else {
+		return "Invalid choice";
 	}
 }
 
 function playRound(humanChoice, computerChoice) {
 
-	if ((humanChoice === "Rock") && (computerChoice === "Paper")) {
-		console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
-		computerScore++;
+	if (humanChoice === computerChoice) {
+		console.log(`Its a draw! ${humanChoice} vs ${computerChoice}`);
 	}
 
-	if ((humanChoice === "Rock") && (computerChoice === "Scissors")) {
+	else if (((humanChoice === "Rock") && (computerChoice === "Scissors")) || 
+			((humanChoice === "Scissors") && (computerChoice === "Paper")) ||
+			((humanChoice === "Paper") && (computerChoice === "Rock"))) {
 		console.log(`You win! ${humanChoice} beats ${computerChoice}`);
 		humanScore++;
 	}
 
-	if ((humanChoice === "Rock") && (computerChoice === "Rock")) {
-		console.log(`It's a draw! ${humanChoice} cannot crush ${computerChoice}`);
-	}
-
-	if ((humanChoice === "Paper") && (computerChoice === "Scissors")) {
+	else {
 		console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
 		computerScore++;
-	}
-
-	if ((humanChoice === "Paper") && (computerChoice === "Rock")) { 
-		console.log(`You win! ${humanChoice} beats ${computerChoice}`);
-		humanScore++;
-	}
-
-	if ((humanChoice === "Paper") && (computerChoice === "Paper")) { 
-		console.log(`It's a draw! ${humanChoice} cannot wrap ${computerChoice}`);
-	}
-
-	if ((humanChoice === "Scissors") && (computerChoice === "Rock")) {
-		console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
-		computerScore++;
-	}
-
-	if ((humanChoice === "Scissors") && (computerChoice === "Paper")) {
-		console.log(`You win! ${humanChoice} beats ${computerChoice}`);
-		humanScore++;
-	}
-
-	if ((humanChoice === "Scissors") && (computerChoice === "Scissors")) {
-		console.log(`It's a draw! ${humanChoice} cannot cut ${computerChoice}`);
 	}
 }
 
@@ -78,6 +55,10 @@ let humanScore = 0;
 let computerScore = 0;
 
 playRound(humanSelection, computerSelection);
+
+console.log(`human: ${humanScore}`);
+console.log(`computer: ${computerScore}`);
+
 
 
 
