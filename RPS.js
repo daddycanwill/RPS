@@ -32,35 +32,56 @@ function getHumanChoice() {
 function playRound(humanChoice, computerChoice) {
 
 	if (humanChoice === computerChoice) {
-		console.log(`Its a draw! ${humanChoice} vs ${computerChoice}`);
+		return "draw";
 	}
 
 	else if (((humanChoice === "Rock") && (computerChoice === "Scissors")) || 
 			((humanChoice === "Scissors") && (computerChoice === "Paper")) ||
 			((humanChoice === "Paper") && (computerChoice === "Rock"))) {
-		console.log(`You win! ${humanChoice} beats ${computerChoice}`);
-		humanScore++;
+		return "human";
+		
 	}
 
 	else {
-		console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
-		computerScore++;
+		return "computer";
 	}
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+function playGame() {
+	
+	let humanScore = 0;
+	let computerScore = 0;
 
-let humanScore = 0;
-let computerScore = 0;
+	for (let i = 1; i <= 5; i++) {
+		const humanSelection = getHumanChoice();
+		const computerSelection = getComputerChoice();
+		let roundWinner = playRound(humanSelection, computerSelection);
+		
+		if (roundWinner === "human") {
+			console.log(`You Win! ${humanSelection} beats ${computerSelection}`);
+			humanScore++;
+		}
+		else if (roundWinner === "computer") {
+			console.log(`You Lose! ${computerSelection} beats ${humanSelection}`)
+			computerScore++;
+		}
+		else {
+			console.log(`It's a Draw! ${computerSelection} vs ${humanSelection}`);
+		}
+	}
 
-playRound(humanSelection, computerSelection);
+	if (humanScore > computerScore) {
+		console.log(`Final Result: Congratulations! You won!`);
+		console.log(`You: ${humanScore} Vs ${computerScore} :Computer`);
+	}
+	else if (humanScore < computerScore) {
+		console.log(`Final Result: You Lost!`);
+		console.log(`You: ${humanScore} Vs ${computerScore} :Computer`);
+	}
+	else {
+		console.log(`Final Result: Its a draw!`);
+		console.log(`You: ${humanScore} Vs ${computerScore} :Computer`);
+	}
+}
 
-console.log(`human: ${humanScore}`);
-console.log(`computer: ${computerScore}`);
-
-
-
-
-
-
+playGame();
